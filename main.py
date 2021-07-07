@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 
 import tensorflow.keras as tf
 
@@ -73,7 +74,7 @@ def predicciones(user_id_param):
 
 
 app = Flask(__name__)
-
+CORS(app, support_credentials=True)
 
 @app.route('/')
 def hello_world():
@@ -88,4 +89,4 @@ def init_pred():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000, debug=True)
